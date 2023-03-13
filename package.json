@@ -1,0 +1,26 @@
+{
+  "name": "vvet-oop",
+  "version": "1.0.0",
+  "description": "Vue3 + Vite + ElementPlus + TypeScript 基于面向对象（oop）模块",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HDAES/vvet-oop.git"
+  },
+  "keywords": [
+    "oop",
+    "vue3",
+    "typescript",
+    "vite",
+    "element"
+  ],
+  "author": "HDADES",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HDAES/vvet-oop/issues"
+  },
+  "homepage": "https://github.com/HDAES/vvet-oop#readme"
+}
