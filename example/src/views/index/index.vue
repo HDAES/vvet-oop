@@ -1,9 +1,13 @@
 <template>
-  <h1>示例</h1>
+  <el-button :loading="loading" type="primary" @click="handleRequest">请求</el-button>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import DemoService from '../../../service/DemoService'
 
-new DemoService().getDemoData()
+const loading = ref(false)
+const handleRequest = () => {
+  new DemoService(loading).getDemoData()
+}
 </script>

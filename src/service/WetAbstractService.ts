@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { WetHttp } from '../http'
+import { WetHttp } from '@/http'
 /**
  * # 请求基本类
  * @author Hdaes
@@ -33,7 +33,7 @@ export abstract class WetAbstractService {
      */
     api(url: string, customBaseUrl?: string): WetHttp {
       url = `${customBaseUrl || this.baseUrl}/${url}`
-   
+     
       if (this.loading) {
         return new WetHttp(url).setLoading(this.loading)
       }

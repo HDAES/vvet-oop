@@ -1,11 +1,5 @@
-import { HttpStatus } from '@/http'
+import { HttpStatus } from '@/http/HttpStatus'
 
-enum Status {
-    OK=200,
-    UNAUTHORIZED = 401
-}
-
-console.log(HttpStatus)
 /**
  * # App 配置
  */
@@ -52,11 +46,21 @@ export class AppConfig {
      * # 全局http请求返回成功状态码
      * 默认 200
      */
-    static defaultHttpSuccessCode = Status.OK
+    static defaultHttpSuccessCode = HttpStatus.OK
 
     /**
      * # 全局http请求返回登录状态码
      * 默认 401
      */
-    static defaultHttpUnauthorizedCode = Status.UNAUTHORIZED
+    static defaultHttpUnauthorizedCode = HttpStatus.UNAUTHORIZED
+
+    /**
+     * # 😄标准错误提示内容
+     */
+    static errorMessage = '系统发生了一些错误，请稍候再试 :)';
+
+    /**
+     * # 😄标准错误提示标题
+     */
+    static errorTitle = '发生错误';
 }

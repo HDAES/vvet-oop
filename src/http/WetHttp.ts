@@ -4,6 +4,7 @@ import type { Ref } from 'vue'
 import { HttpContentType } from './HttpContentType'
 import { HttpMethod } from './HttpMethod'
 import { AppConfig } from '@/config/AppConfig'
+import { WetNotification } from '@/tips/WetNotification'
 /**
  * # 网络请求
  * @author Hdaes
@@ -157,7 +158,6 @@ export class WetHttp {
         if (this.loading) {
           this.loading.value = false
         }
-
         switch (res.data[AppConfig.defaultHttpCodeKey]) {
           case AppConfig.defaultHttpSuccessCode:
             resolve(res.data[AppConfig.defaultHttpCodeKey])
@@ -166,14 +166,20 @@ export class WetHttp {
             console.log('未登录')
             break
           default:
-            reject()
+            if (!this.flagIgnoreError) {
+              new WetNotification().setTitle(AppConfig.errorTitle)
+              .setMessage(res.data[AppConfig.defaultHttpMessageKey] || AppConfig.errorMessage)
+              .error()
+            }
+            reject(res.data)
         }
       }).catch(e => {
         if (this.loading) {
           this.loading.value = false
         }
         if (!this.flagIgnoreError) {
-          console.log('输出错误提示')
+          new WetNotification().setTitle(AppConfig.errorTitle)
+          .setMessage(AppConfig.errorMessage)
         }
         reject(e)
       })
