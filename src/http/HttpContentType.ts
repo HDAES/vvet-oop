@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * # 😄HTTP ContentType
  * @author Hamm

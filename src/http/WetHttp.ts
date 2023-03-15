@@ -3,8 +3,8 @@ import type { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse, AxiosRespo
 import type { Ref } from 'vue'
 import { HttpContentType } from './HttpContentType'
 import { HttpMethod } from './HttpMethod'
-import { AppConfig } from '@/config/AppConfig'
-import { WetNotification } from '@/tips/WetNotification'
+import { AppConfig } from '../config/AppConfig'
+import { WetNotification } from '../tips/WetNotification'
 /**
  * # 网络请求
  * @author Hdaes
