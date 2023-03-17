@@ -43,7 +43,7 @@
             content="关闭"
             placement="top"
           >
-            <el-icon class="close"><SwitchButton /></el-icon>
+            <el-icon class="close" @click="emits('onCancel')"><SwitchButton /></el-icon>
           </el-tooltip>
         </div>
         <div v-loading="loading" class="dialog-content-body">
@@ -63,6 +63,9 @@
               @click="confirmEvent()"
             >
               {{ confirmText }}
+            </el-button>
+            <el-button v-if="!hideCancel" class="cancel" @click="emits('onCancel')">
+              {{ cancelText }}
             </el-button>
           </div>
         </div>
@@ -175,6 +178,20 @@ const props = defineProps({
     default: '确定',
   },
 
+  /**
+   * # 隐藏取消按钮
+   */
+  hideCancel: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * # 取消按钮文字
+   */
+  cancelText: {
+    type: String,
+    default: '取消',
+  },
   /**
    * # 如传入此参数,则自动校验,否则请自行校验
    */

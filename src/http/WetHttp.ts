@@ -1,5 +1,5 @@
-import axios from 'axios'
 import type { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse, AxiosResponseHeaders, Method } from 'axios'
+import axios from 'axios'
 import type { Ref } from 'vue'
 import { HttpContentType } from './HttpContentType'
 import { HttpMethod } from './HttpMethod'
@@ -19,7 +19,7 @@ export class WetHttp {
   /**
   * # 基础请求配置
   */
-  private axiosRequestConfig: AxiosRequestConfig = {};
+  private axiosRequestConfig!: AxiosRequestConfig;
 
   /**
   * # 请求路径
