@@ -8,7 +8,6 @@ import { ref } from 'vue'
 import DemoService from '../../../service/DemoService'
 import Dialog from './dialog.vue'
 import { DialogHelper } from '@/helper/DialogHelper'
-import { People } from '../../../entity/People'
 
 const loading = ref(false)
 const handleRequest = () => {

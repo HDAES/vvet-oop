@@ -3,14 +3,14 @@ import axios from 'axios'
 import type { Ref } from 'vue'
 import { HttpContentType } from './HttpContentType'
 import { HttpMethod } from './HttpMethod'
-import { AppConfig } from '../config/AppConfig'
+import { AppConfig } from '../AppConfig'
 import { WetNotification } from '../tips/WetNotification'
 /**
  * # 网络请求
  * @author Hdaes
  */
 
-export class WetHttp {
+export class VvetHttp {
   /**
   * # 基础返回对象
   */

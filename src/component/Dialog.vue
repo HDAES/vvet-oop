@@ -35,7 +35,7 @@
             content="全屏"
             placement="top"
           >
-            <el-icon><FullScreen @click="headerDoubleClicked" /></el-icon>
+            <el-icon><Monitor @click="headerDoubleClicked" /></el-icon>
           </el-tooltip>
           <el-tooltip
             v-if="!hideClose"

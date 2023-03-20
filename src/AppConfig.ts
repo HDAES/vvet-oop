@@ -63,4 +63,16 @@ export class AppConfig {
      * # 😄标准错误提示标题
      */
     static errorTitle = '发生错误';
+
+    /**
+     * # 默认的表格空数据兜底字符串
+     * \@TableField 装饰器中可以单独配置 ```emptyValue```,
+     */
+    static defaultTableEmptyValue = '--'
+
+    /**
+     * # 默认的表格数组显示分割字符
+     * \@TableField 装饰器中可以单独配置 ```arraySplitor```,
+     */
+    static defaultArraySplitor = '，'
 }

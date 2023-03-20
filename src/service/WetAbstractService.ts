@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { WetHttp } from '../http'
+import { VvetHttp } from '../http'
 /**
  * # 请求基本类
  * @author Hdaes
@@ -31,12 +31,12 @@ export abstract class WetAbstractService {
      * @param url 请求地址 customBaseUrl 根目录
      * @returns
      */
-    api(url: string, customBaseUrl?: string): WetHttp {
+    api(url: string, customBaseUrl?: string): VvetHttp {
       url = `${customBaseUrl || this.baseUrl}/${url}`
      
       if (this.loading) {
-        return new WetHttp(url).setLoading(this.loading)
+        return new VvetHttp(url).setLoading(this.loading)
       }
-      return new WetHttp(url)
+      return new VvetHttp(url)
     }
 }

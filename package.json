@@ -47,7 +47,10 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.3.4",
+    "class-transformer": "^0.5.1",
     "element-plus": "^2.3.0",
+    "reflect-metadata": "^0.1.13",
+    "save": "^2.9.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   }

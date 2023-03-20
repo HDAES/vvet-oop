@@ -1,4 +1,4 @@
 export * from './WetHttp'
-export { HttpContentType, HttpContentType as WetHttpContentType } from './HttpContentType'
-export { HttpMethod, HttpMethod as WetHttpMethod } from './HttpMethod'
-export { HttpStatus, HttpStatus as WetHttpStatus } from './HttpStatus'
+export { HttpContentType, HttpContentType as VvetHttpContentType } from './HttpContentType'
+export { HttpMethod, HttpMethod as VvetHttpMethod } from './HttpMethod'
+export { HttpStatus, HttpStatus as VvetHttpStatus } from './HttpStatus'

@@ -1,3 +1,4 @@
+import { ClassName } from '@/decorator/CustomName'
 import { BaseAbstractService } from '../base/BaseAbstractService'
 
 export default class DemoService extends BaseAbstractService {
