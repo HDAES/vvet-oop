@@ -1,5 +1,5 @@
 import type { IFieldConfig } from '../interface/IFieldConfig'
-import type { DateTimeFormatter } from '../emum/DateTimeFormatter'
+import type { DateTimeFormatterEnum } from '../emum/DateTimeFormatterEnum'
 /**
  * # 表格字段配置接口
  * @author Hdaes
@@ -39,7 +39,7 @@ export interface ITableFieldConfig extends IFieldConfig{
     /**
      * # 如是日期 可传入转换规则
      */
-    dateTimeFormatter?: DateTimeFormatter | string;
+    dateTimeFormatter?: DateTimeFormatterEnum | string;
 
     /**
     * # 是否允许排序
@@ -87,4 +87,14 @@ export interface ITableFieldConfig extends IFieldConfig{
     * # 数组分隔符
     */
     arraySeparator?: string
+
+    /**
+    * # 是否友好时间
+    */
+    isFriendlyDateTime?: boolean
+
+    /**
+     * # 是否可以隐藏
+     */
+    forceShow?: boolean
 }

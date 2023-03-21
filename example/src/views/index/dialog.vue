@@ -1,23 +1,24 @@
 <template>
-  <Dialog
+  <WDialog
     width="1000"
     @on-cancel="props.onCancel()"
   >
-    <h1>1</h1>
-  </Dialog>
+    <el-popover
+      placement="top-start"
+      title="Title"
+      :width="200"
+      trigger="hover"
+      content="this is content, this is content, this is content"
+    >
+      <template #reference>
+        <el-button class="m-2">Hover to activate</el-button>
+      </template>
+    </el-popover>
+  </WDialog>
 </template>
 <script setup>
-import { plainToClass } from 'class-transformer'
-import Dialog from '@/component/Dialog.vue'
+import { WDialog } from '@/component'
 import { dialogPropsId } from '@/helper/DialogHelper'
-import { People } from '../../../entity/People'
 
 const props = defineProps(dialogPropsId())
-const xiaoming = { name: '小明' }
-
-console.log(People.prototype.getCustomClassName())
-console.log(People.prototype.getCustomFieldName('name'))
-console.log(People.prototype.getCustomDescription('name'))
-console.log(plainToClass(People, xiaoming))
-console.log(People.prototype.getCustomTableFieldConfig('name'))
 </script>

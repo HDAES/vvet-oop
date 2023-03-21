@@ -10,7 +10,7 @@ import { WetNotification } from '../tips/WetNotification'
  * @author Hdaes
  */
 
-export class VvetHttp {
+export class WetHttp {
   /**
   * # 基础返回对象
   */

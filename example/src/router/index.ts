@@ -7,6 +7,11 @@ const routes: Array<RouteRecordRaw> = [
     name: '示例',
     component: () => import('@@/views/index/index.vue'),
   },
+  {
+    path: '/table',
+    name: '表格',
+    component: () => import('@@/views/table/index.vue'),
+  },
 ]
 
 // 创建路由

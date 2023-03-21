@@ -1,4 +1,5 @@
 import { HttpStatus } from '@/http/HttpStatus'
+import { DateTimeFormatterEnum } from './emum/DateTimeFormatterEnum'
 
 /**
  * # App 配置
@@ -75,4 +76,32 @@ export class AppConfig {
      * \@TableField 装饰器中可以单独配置 ```arraySplitor```,
      */
     static defaultArraySplitor = '，'
+
+    /**
+     * # 默认的格式化时间
+     * 如设置,则未格式化方式的地方将默认使用此方式
+     * ```
+     * AppConfig.defaultDateTimeFormatter = AirDateTimeFormatter.YYYY_MM_DD
+     * ```
+     */
+    static defaultDateTimeFormatter = DateTimeFormatterEnum.YYYY_MM_DD_HH_mm_ss
+
+    /**
+    * # 静态资源文件地址
+    */
+    static staticUrl = ''
+
+    /**
+     * # 权限列表
+     */
+    static permissionList: string[] = []
+
+    /**
+     * # 是否有权限
+     * @param permission 权限标识
+     * @returns
+     */
+    static hasPermission(permission: string): boolean {
+      return this.permissionList.includes(permission)
+    }
 }

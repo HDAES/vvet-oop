@@ -1,7 +1,7 @@
 import { instanceToPlain } from 'class-transformer'
 import { getClassName, getFieldName, getDescription } from '../decorator/CustomName'
 import type { WetTableFieldConfig } from '../config/WetTableFieldConfig'
-import { getTableFieldConfig } from '../decorator/TableField'
+import { getCustomTableFieldList, getCustomTableFieldNameList, getTableFieldConfig } from '../decorator/TableField'
 
 /**
  * 基础模型
@@ -64,11 +64,31 @@ export class WetBaseModel {
   }
 
   /**
-   * # 😄获取表格字段的配置列表
+   * # 获取取表格字段的配置列表
    * @param fieldNameList 字段列表
    * @returns
    */
   getCustomTableFieldConfig(fieldKey: string): WetTableFieldConfig | null {
     return getTableFieldConfig(this, fieldKey)
+  }
+
+  /**
+   * # 获取表格字段的 key
+   * @param
+   * @returns
+   */
+  getCustomTableFieldNameList(): string[] {
+    return getCustomTableFieldNameList(this)
+  }
+
+  /**
+   * # 取表格字段的配置列表
+   * @param fieldNameList 字段列表
+   * @returns
+   */
+  getTableFieldConfigList(...fieldNameList: string[]): WetTableFieldConfig[] {
+    const configList = getCustomTableFieldList(this, fieldNameList)
+    configList.sort((a, b) => b.orderNumber - a.orderNumber)
+    return configList
   }
 }

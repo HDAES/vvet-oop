@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer'
 import type { ITableFieldConfig } from '../interface/ITableFieldConfig'
-import type { DateTimeFormatter } from '../emum/DateTimeFormatter'
+import type { DateTimeFormatterEnum } from '../emum/DateTimeFormatterEnum'
 import { AppConfig } from '../AppConfig'
 import { FieldConfig } from './FieldConfig'
 /**
@@ -20,7 +20,7 @@ export class WetTableFieldConfig extends FieldConfig implements ITableFieldConfi
 
     @Expose() orderNumber = 1
 
-    @Expose() dateTimeFormatter?: DateTimeFormatter | string
+    @Expose() dateTimeFormatter?: DateTimeFormatterEnum | string
 
     @Expose() sortable?: boolean | 'custom' = false
 
@@ -39,4 +39,8 @@ export class WetTableFieldConfig extends FieldConfig implements ITableFieldConfi
     @Expose() emptyValue?= AppConfig.defaultTableEmptyValue
 
     @Expose() arraySeparator?= AppConfig.defaultArraySplitor
+
+    @Expose() isFriendlyDateTime?:boolean= false
+
+    @Expose() forceShow?:boolean = false
 }

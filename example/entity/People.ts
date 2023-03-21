@@ -1,16 +1,20 @@
 import { WetBaseModel } from '@/model/WetBaseModel'
 import { ClassName, Description, FieldName } from '@/decorator/CustomName'
 import { TableField } from '@/decorator/TableField'
+import { BaseEntity } from '../base/BaseEntity'
 
 @ClassName('示例类')
-export class People extends WetBaseModel {
-    /**
-    * # 性别
-    */
+export class People extends BaseEntity {
     @FieldName('姓名')
-    @Description('这是姓名字段的描述')
+    @TableField({
+        orderNumber: 1,
+        isCopyField: true
+    })
+    name!: string
+
+    @FieldName('性别')
     @TableField({
         orderNumber: 1
     })
-    name!: string
+    sex!: string
 }

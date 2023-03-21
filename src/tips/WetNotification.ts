@@ -1,5 +1,5 @@
 import { ElNotification } from 'element-plus'
-import { NotificationPosition, NotificationType } from './TipsEnum'
+import { NotificationPosition, NotificationType } from '../emum/TipsEnum'
 
 /**
  * # 悬浮出现在页面角落，显示全局的通知提醒消息。

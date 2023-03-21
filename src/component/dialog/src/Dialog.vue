@@ -75,8 +75,8 @@
 </template>
 <script lang="ts" setup>
 import { ref, nextTick, computed } from 'vue'
-import { FormatHelper } from '@/helper/formatHelper'
-import { WetNotification } from '../tips/WetNotification'
+import { FormatHelper } from '../../../helper/FormatHelper'
+import { WetNotification } from '../../../tips/WetNotification'
 
 const props = defineProps({
   /**

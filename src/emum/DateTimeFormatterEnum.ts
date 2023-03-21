@@ -4,7 +4,7 @@
  * # 标准时间格式化
  * @author Hades
  */
-export enum DateTimeFormatter{
+export enum DateTimeFormatterEnum{
     /**
      * # e.g. 2022-02-02 22:22:22
      */

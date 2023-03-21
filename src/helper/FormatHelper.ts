@@ -9,7 +9,8 @@ export class FormatHelper {
      * @param suffix 后缀
      * @returns ** + px
      */
-  static toPixel(value: string | number, suffix = 'px'): string {
-    return typeof value === 'string' && Number.isNaN(Number(value)) ? value : `${value + suffix}`
+  static toPixel(value: string | number | null, suffix = 'px'): string {
+    if (value) return typeof value === 'string' && Number.isNaN(Number(value)) ? value : `${value + suffix}`
+    return ''
   }
 }

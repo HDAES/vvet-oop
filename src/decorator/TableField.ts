@@ -40,7 +40,6 @@ export function TableField<T extends WetBaseModel>(tableFieldConfig?: ITableFiel
 export function getTableFieldConfig(target: any, fieldKey: string): WetTableFieldConfig | null {
   let tableFieldConfig = Reflect.getOwnMetadata(tableFieldMetaKey, target, fieldKey)
   if (!tableFieldConfig) {
-    // 没有查询到配置
     const superClass = Object.getPrototypeOf(target)
     if (superClass.constructor.name === WetBaseModel.name) {
       return null
@@ -56,4 +55,41 @@ export function getTableFieldConfig(target: any, fieldKey: string): WetTableFiel
     tableFieldConfig.label = getFieldName(target, fieldKey)
   }
   return tableFieldConfig
+}
+
+/**
+ * # 获取标记表格字段
+ * @param target 目标对象
+ */
+export function getCustomTableFieldNameList<E extends WetBaseModel>(target: E): string[] {
+  let list: string[] = Reflect.getOwnMetadata(tableFieldListMetaKey, target) || []
+  const superClass = Object.getPrototypeOf(target)
+  if (superClass.constructor.name !== WetBaseModel.name) {
+    list = list.concat(getCustomTableFieldNameList(superClass))
+  }
+  return list
+}
+
+/**
+ * # 获取字段标记的表格字段配置列表
+ * @param fieldNameList 字段列表
+ * @returns
+ */
+export function getCustomTableFieldList<E extends WetBaseModel>(target: E, fieldNameList: string[]) {
+  const tableFieldConfigList: WetTableFieldConfig[] = []
+  const keyList = []
+  if (fieldNameList.length === 0) {
+    fieldNameList = getCustomTableFieldNameList(target)
+  }
+  for (const fieldName of fieldNameList) {
+    if (keyList.indexOf(fieldName) >= 0) {
+      continue
+    }
+    const config = getTableFieldConfig(target, fieldName)
+    if (config) {
+      keyList.push(config.key)
+      tableFieldConfigList.push(config)
+    }
+  }
+  return tableFieldConfigList
 }
