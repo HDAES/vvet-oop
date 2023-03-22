@@ -4,6 +4,9 @@ import { WDataTime } from './data-time'
 import { WCopy } from './copy'
 import { Wbutton } from './button'
 import { WBody } from './body'
+import { WMenu, WChildMenu } from './menu'
+import { WPanel } from './panel'
+import { WPaination } from './pagination'
 
 export {
   WDialog,
@@ -12,4 +15,8 @@ export {
   WCopy,
   Wbutton,
   WBody,
+  WMenu,
+  WChildMenu,
+  WPanel,
+  WPaination,
 }

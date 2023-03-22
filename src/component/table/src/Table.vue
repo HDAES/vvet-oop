@@ -202,7 +202,7 @@ const props = defineProps({
    */
   autoHeight: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   /**
    * # 是否懒加载子节点数据
@@ -485,6 +485,7 @@ init()
 </script>
 <style lang="scss" >
 .wet-table-container{
+  min-height: 300px;
   .operate-header{
     display: flex;
     flex-direction: row;

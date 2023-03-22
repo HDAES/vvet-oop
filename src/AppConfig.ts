@@ -1,6 +1,6 @@
+import type { Router } from 'vue-router'
 import { HttpStatus } from '@/http/HttpStatus'
 import { DateTimeFormatterEnum } from './emum/DateTimeFormatterEnum'
-
 /**
  * # App 配置
  */
@@ -21,12 +21,22 @@ export class AppConfig {
     static accessTokenKey = 'access_token';
 
     /**
+     * # Vue 路由
+     */
+    static router: Router;
+
+    /**
      * # 获取AccessToken
      * @returns AccessToken
      */
     static getAccessToken(): string {
       return localStorage.getItem(this.accessTokenKey) || ''
     }
+
+    /**
+     * # 😄是否访问超时
+     */
+    static isTimeout = false
 
     /**
     * # 后端默认返回code 的key

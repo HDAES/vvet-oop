@@ -7,7 +7,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import DemoService from '../../../service/DemoService'
+import DemoService from '../../service/DemoService'
 import Dialog from './dialog.vue'
 import { DialogHelper } from '@/helper/DialogHelper'
 

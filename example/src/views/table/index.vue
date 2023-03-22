@@ -1,11 +1,15 @@
 <template>
-  <Table :data-list="dataList" :entity="People" />
+  <WPanel>
+    <template #body>
+      <WTable :data-list="dataList" :entity="People" />
+    </template>
+  </WPanel>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Table from '@/component/table/src/Table.vue'
-import { People } from '../../../entity/People'
+import { People } from '../../entity/People'
+import { WPanel, WTable } from '@/component'
 
 const dataList = ref<People[]>([
 

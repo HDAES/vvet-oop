@@ -8,13 +8,8 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/example',
     component: () => import('../component/admin.vue'),
     children: [{
-      path: '/example',
-      name: '示例',
-      component: () => import('@@/views/index/index.vue'),
-    }, {
-      path: '/table',
-      name: '表格',
-      component: () => import('@@/views/table/index.vue'),
+      path: ':catchAll(.*)',
+      component: () => import('@/ErrorPage.vue'),
     }],
   },
 ]
