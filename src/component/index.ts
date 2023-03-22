@@ -3,6 +3,7 @@ import { WTable } from './table'
 import { WDataTime } from './data-time'
 import { WCopy } from './copy'
 import { Wbutton } from './button'
+import { WBody } from './body'
 
 export {
   WDialog,
@@ -10,4 +11,5 @@ export {
   WDataTime,
   WCopy,
   Wbutton,
+  WBody,
 }

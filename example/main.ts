@@ -1,4 +1,4 @@
-import router from '@@/router'
+import router from './config/router'
 import app from '@/app'
 
 app.use(router)

@@ -2,12 +2,12 @@ import { Expose } from 'class-transformer'
 import type { ITableFieldConfig } from '../interface/ITableFieldConfig'
 import type { DateTimeFormatterEnum } from '../emum/DateTimeFormatterEnum'
 import { AppConfig } from '../AppConfig'
-import { FieldConfig } from './FieldConfig'
+import { WetFieldConfig } from './WetFieldConfig'
 /**
  * # 表格实体类
  * @author Hdaes
  */
-export class WetTableFieldConfig extends FieldConfig implements ITableFieldConfig {
+export class WetTableFieldConfig extends WetFieldConfig implements ITableFieldConfig {
     @Expose() hide = false
 
     @Expose() removed = false

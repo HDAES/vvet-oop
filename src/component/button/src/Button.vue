@@ -1,6 +1,5 @@
 <template>
   <el-tooltip
-    effect="customized"
     :content="permission && !AppConfig.permissionList.includes(permission) ? '无权操作' : tooltip"
     placement="top"
     :disabled="!tooltip"
@@ -13,7 +12,7 @@
       :disabled="isDisabled"
       @click="$emit('onClick'); $emit('click')"
     >
-      <el-icon><component :is="icon" /></el-icon>
+      <el-icon :size="iconSize"><component :is="icon" /></el-icon>
     </el-link>
     <el-button
       v-else
@@ -22,7 +21,7 @@
       :disabled="isDisabled"
       @click="$emit('onClick'); $emit('click')"
     >
-      <el-icon><component :is="icon" /></el-icon>
+      <el-icon :size="iconSize"><component :is="icon" /></el-icon>
       <slot />
     </el-button>
   </el-tooltip>
@@ -63,15 +62,13 @@ const props = defineProps({
     type: String as PropType<IconEnum>,
     default: '',
   },
-
   /**
-   * # 常用图标
+   * # 自定义图标大小
    */
-  type: {
-    type: String as PropType<IconEnum>,
-    default: '',
+  iconSize: {
+    type: Number,
+    default: 18,
   },
-
   /**
    * # 是否图标按钮
    */

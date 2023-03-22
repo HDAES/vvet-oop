@@ -86,9 +86,9 @@
       </template>
 
       <el-table-column
-        v-if="!hideOperate || fieldFilter"
+        v-if="!hideOperate || isHideFieldFilter"
         fixed="right"
-        align="right"
+        align="left"
         :width="
           FormatHelper.toPixel(operateWidth) || 'auto'
         "
@@ -96,7 +96,7 @@
         <template #header>
           <div class="operate-header">
             <span v-if="!hideOperate" class="operate-header-title">操作</span>
-            <template v-if="fieldFilter">
+            <template v-if="isHideFieldFilter">
               <el-popover placement="right" trigger="click">
                 <template #reference>
                   <el-icon class="vvet">
@@ -124,13 +124,53 @@
           </div>
         </template>
         <template #default="scope">
-          <div class="operate-row">
+          <el-space>
             <!--自定义操作按钮-->
             <slot name="custom" :data="scope.row" :index="scope.$index" />
-            <Wbutton :icon="IconEnum.EDIT" />
-          </div>
+            <template v-if="!hideOperate">
+              <Wbutton
+                v-if="addButton"
+                icon-button
+                :icon="IconEnum.CIRCLEPLUS"
+                :disabled="isAddDisabled(scope.row)"
+                :tooltip="isAddDisabled(scope.row) ? '禁止添加' : '添加'"
+                :permission="addPermission || pageConfig.addTablePermission"
+              />
+              <Wbutton
+                v-if="editButton"
+                icon-button
+                :icon="IconEnum.COMPASS"
+                :disabled="isEditDisabled(scope.row)"
+                :tooltip="isEditDisabled(scope.row) ? '禁止编辑' : '编辑'"
+                :permission="editPermission || pageConfig.editPermission"
+              />
+              <Wbutton
+                v-if="detailButton"
+                icon-button
+                :icon="IconEnum.WARNING"
+                :disabled="isDetailDisabled(scope.row)"
+                :tooltip="isDetailDisabled(scope.row) ? '禁止查看详情' : '查看详情'"
+                :permission="detailPermission || pageConfig.detailPermission"
+              />
+              <Wbutton
+                v-if="deleteButton"
+                icon-button
+                danger
+                :icon="IconEnum.CIRCLECLOSE"
+                :disabled="isDeleteDisabled(scope.row)"
+                :tooltip="isDeleteDisabled(scope.row) ? '禁止删除' : '删除'"
+                :permission="deletePermission || pageConfig.deletePermission"
+              />
+            </template>
+            <!-- 自定义操作列后置插槽 -->
+            <slot name="endRow" :data="scope.row" :index="scope.$index" />
+          </el-space>
         </template>
       </el-table-column>
+      <template #empty>
+        <img src="../../../assets/img/empty.svg">
+        <div>{{ emptyText || pageConfig.tableEmptyText || '暂无数据' }}</div>
+      </template>
     </el-table>
   </div>
 </template>
@@ -146,6 +186,8 @@ import { WetTableFieldConfig } from '../../../config/WetTableFieldConfig'
 import { FormatHelper } from '../../../helper/FormatHelper'
 import { FileHelper } from '../../../helper/FileHelper'
 import { IconEnum } from '../../../emum/IconEnum'
+import { WetPageConfig } from '../../../config/WetPageConfig'
+import { getPageConfig } from '../../../decorator/PageConfig'
 
 const props = defineProps({
   /**
@@ -255,7 +297,106 @@ const props = defineProps({
    */
   operateWidth: {
     type: Number || String,
-    default: 200,
+    default: 130,
+  },
+
+  /**
+   * # 添加字段
+   */
+  addButton: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * # 控制表格添加按钮是否禁用
+   */
+  disableAdd: {
+    type: Function,
+    default: null,
+  },
+  /**
+   * # 行内添加按钮的权限标识
+   */
+  addPermission: {
+    type: String,
+    default: undefined,
+  },
+
+  /**
+   * # 编辑按钮字段
+   */
+  editButton: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * # 控制表格编辑按钮是否禁用
+   */
+  disableEdit: {
+    type: Function,
+    default: null,
+  },
+  /**
+   * # 编辑按钮的权限标识
+   */
+  editPermission: {
+    type: String,
+    default: undefined,
+  },
+
+  /**
+   * # 详情按钮字段
+   */
+  detailButton: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * # 控制表格详情按钮是否禁用
+   */
+  disableDetail: {
+    type: Function,
+    default: null,
+  },
+  /**
+   * # 详情按钮的权限标识
+   */
+  detailPermission: {
+    type: String,
+    default: undefined,
+  },
+
+  /**
+   * # 删除按钮字段
+   */
+  deleteButton: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * # 控制表格删除按钮是否禁用
+   */
+  disableDelete: {
+    type: Function,
+    default: null,
+  },
+  /**
+   * # 删除按钮的权限标识
+   */
+  deletePermission: {
+    type: String,
+    default: undefined,
+  },
+  /**
+   * # 表格为空 文字描述
+   */
+  emptyText: {
+    type: String,
+    default: '',
   },
 
 })
@@ -274,15 +415,20 @@ const tableId = `tb_${Math.floor(Math.random() * 1000)}`
  * 内部使用的entity
  */
 const tableBindEntity: ClassConstructor<WetAbstractEntity> | null = props.entity || null
+
 /**
-* # 获取所有表格所有字段
-*/
+ * 页面配置
+ */
+
+let pageConfig: WetPageConfig = new WetPageConfig()
 
 /**
  * 选择的字段
  */
 const selectedFieldList = ref([] as string[])
-
+/**
+ * # 获取所有表格所有字段
+ */
 const allFieldList = computed(() => {
   if (props.fieldList?.length > 0) {
     return props.fieldList?.filter(item => !item.removed)
@@ -302,6 +448,16 @@ function updateSelectedFieldList() {
 }
 
 /**
+ * 是否隐藏表格列
+ */
+const isHideFieldFilter = computed(() => {
+  if (pageConfig.hideFieldFilter) {
+    return false
+  }
+  return props.fieldList
+})
+
+/**
  * 字段是否选择
  */
 function isSelected(item: WetTableFieldConfig) {
@@ -311,8 +467,16 @@ function isSelected(item: WetTableFieldConfig) {
   return selectedFieldList.value.indexOf(item.key) >= 0
 }
 
+const isAddDisabled = (row: typeof tableBindEntity) => (props.disableAdd ? props.disableAdd(row) : false)
+const isDeleteDisabled = (row: typeof tableBindEntity) => (props.disableDelete ? props.disableDelete(row) : false)
+const isDetailDisabled = (row: typeof tableBindEntity) => (props.disableDetail ? props.disableDetail(row) : false)
+const isEditDisabled = (row: typeof tableBindEntity) => (props.disableEdit ? props.disableEdit(row) : false)
 // 初始化
 function init() {
+  // 初始化页面配置
+  if (tableBindEntity) {
+    pageConfig = getPageConfig(tableBindEntity)
+  }
   // 初始更新
   updateSelectedFieldList()
 }
