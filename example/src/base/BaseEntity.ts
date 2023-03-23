@@ -19,7 +19,7 @@ export class BaseEntity extends WetAbstractEntity {
     @FieldName('创建时间')
     @TableField({
         width:180,
-        orderNumber: 100,
+        orderNumber: 0,
         dateTimeFormatter: DateTimeFormatterEnum.YYYY_MM_DD_HH_mm
     })
     createTime!: number;

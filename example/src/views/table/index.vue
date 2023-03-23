@@ -1,7 +1,7 @@
 <template>
   <WPanel>
     <template #body>
-      <WTable :data-list="dataList" :entity="People" />
+      <h1 v-for="item in 100" :key="item">{{ item }}</h1>
     </template>
   </WPanel>
 </template>

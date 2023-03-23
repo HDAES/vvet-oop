@@ -12,7 +12,7 @@ import './assets/css/animation.css'
 
 // Vue初始化
 const app = createApp(App)
-// ELement Plus 初始化
+// Element Plus 初始化
 app.use(ElementPlus, { zIndex: 3000, locale: zhCn })
 // 注册icon
 

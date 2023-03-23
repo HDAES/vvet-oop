@@ -3,9 +3,8 @@ import { WTable } from './table'
 import { WDataTime } from './data-time'
 import { WCopy } from './copy'
 import { Wbutton } from './button'
-import { WBody } from './body'
+import { WBody, WPanel } from './body'
 import { WMenu, WChildMenu } from './menu'
-import { WPanel } from './panel'
 import { WPaination } from './pagination'
 
 export {

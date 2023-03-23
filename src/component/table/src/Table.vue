@@ -485,6 +485,9 @@ init()
 </script>
 <style lang="scss" >
 .wet-table-container{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   min-height: 300px;
   .operate-header{
     display: flex;

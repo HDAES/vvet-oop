@@ -8,7 +8,7 @@
         </div>
         <div class="vvet-aside-copyright">@</div>
       </el-aside>
-      <el-container style="">
+      <el-container class="left-container">
         <el-header class="vvet-header">
           <div class="vvet-header-left">
             <el-icon class="collapse" :size="24" @click="collapseChanged">
@@ -27,9 +27,9 @@
 
           <div>123</div>
         </el-header>
-        <el-scrollbar class="vvet-main">
+        <div class="vvet-main">
           <slot name="main" />
-        </el-scrollbar>
+        </div>
       </el-container>
     </el-container>
   </div>
@@ -153,6 +153,22 @@ const breadList = computed(() => getMenuTraceList(props.menuList))
     display: none;
   }
 
+  .left-container{
+    display: flex;
+    flex-direction: column;
+
+    .vvet-main{
+      flex: 1;
+      margin: 10px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+      border: solid 1px var(--el-menu-border-color);
+      :deep(.el-scrollbar__view){
+        height: 100%;
+      }
+    }
+  }
   .vvet-header{
     display: flex;
     flex-direction: row;
@@ -170,15 +186,5 @@ const breadList = computed(() => getMenuTraceList(props.menuList))
     }
   }
 
-  .vvet-main{
-    margin: 10px;
-    border-radius: 6px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    border: solid 1px var(--el-menu-border-color);
-    :deep(.el-scrollbar__view){
-      height: 100%;
-    }
-
-  }
 }
 </style>
