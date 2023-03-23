@@ -168,7 +168,7 @@
         </template>
       </el-table-column>
       <template #empty>
-        <img src="../../../assets/img/empty.svg">
+        <img style="width: 400px" src="../../../assets/img/empty.svg">
         <div>{{ emptyText || pageConfig.tableEmptyText || '暂无数据' }}</div>
       </template>
     </el-table>

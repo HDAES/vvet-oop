@@ -5,7 +5,7 @@ import { WCopy } from './copy'
 import { Wbutton } from './button'
 import { WBody, WPanel } from './body'
 import { WMenu, WChildMenu } from './menu'
-import { WPaination } from './pagination'
+import { WPagination } from './pagination'
 
 export {
   WDialog,
@@ -17,5 +17,5 @@ export {
   WMenu,
   WChildMenu,
   WPanel,
-  WPaination,
+  WPagination,
 }

@@ -1,1 +1,1 @@
-export { default as WPaination } from './src/Pagination.vue'
+export { default as WPagination } from './src/Pagination.vue'

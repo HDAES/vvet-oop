@@ -1,7 +1,7 @@
 <template>
   <div class="vvet-panel">
     <div v-if="showHeader" class="panel-header">
-      <el-page-header :icon="ArrowLeft">
+      <el-page-header :icon="ArrowLeft" title="   ">
         <template #content>
           <span> Title </span>
         </template>
