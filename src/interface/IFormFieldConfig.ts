@@ -109,57 +109,57 @@ export interface IFormFieldConfig extends IFieldConfig {
     enumRecord?: IRecord[]
 
     /**
-     * # 😄返回全路径的值
+     * # 返回全路径的值
      */
     emitPath?: boolean;
 
     /**
-     * # 😄显示全路径
+     * # 显示全路径
      */
     showAllLevels?: boolean;
 
     /**
-     * # 😄是否自适应
+     * # 是否自适应
      */
     autoSize?: boolean;
 
     /**
-     * # 😄最小行数
+     * # 最小行数
      */
     minRows?: number;
 
     /**
-     * # 😄最大行数
+     * # 最大行数
      */
     maxRows?: number;
 
     /**
-     * # 😄是否使用Switch控件
+     * # 是否使用Switch控件
      */
     isSwitch?: boolean;
 
     /**
-     * # 😄使用Switch控件时是否隐藏Label文字
+     * # 使用Switch控件时是否隐藏Label文字
      */
     hideSwitchLabel?: boolean;
 
     /**
-     * # 😄是否使用Radio控件
+     * # 是否使用Radio控件
      */
     isRadio?: boolean;
 
     /**
-     * # 😄使用Radio控件时用按钮的样式
+     * # 使用Radio控件时用按钮的样式
      */
     isRadioButton?: boolean;
 
     /**
-     * # 😄表单的默认值
+     * # 表单的默认值
      */
     defaultValue?: boolean | string | number;
 
     /**
-     * # 😄switch不使用枚举配置的颜色
+     * # switch不使用枚举配置的颜色
      */
     disableSwitchColor?: boolean;
 }
